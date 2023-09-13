@@ -1,0 +1,68 @@
+.currentCard{
+    margin-top: 1.5rem;
+    padding: 16px 20px 16px 20px;
+    border-radius: 16px;
+    border: 1px solid var(--primary-color, #1D4179);
+    background: var(--white, #FFF);
+    
+    /* Drop Shadow */
+    box-shadow: 0px 4px 4px 0px rgba(217, 217, 217, 0.25);
+}
+.currentCard .ccardHeading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #69696A;
+}
+.Pricing{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.Profile{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+.Pricing p{
+    color: var(--primary-color, #1D4179);
+/* El Messiri/20px: Medium */
+font-family: Spline Sans;
+font-size: 20px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+.ccardDetails{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1rem 0rem; 
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #69696A;
+}
+.detail{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.detail p{
+    color: var(--black, #1E1E1E);
+}
+.detail span{
+    color: var(--sub, #69696A);
+}
+.ccBtn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    gap: 5px;
+    border-radius: 9px;
+    border: 1px solid var(--primary-color, #1D4179);
+    background: var(--white, #FFF);
+        cursor: pointer;
+    /* Drop Shadow */
+    box-shadow: 0px 4px 4px 0px rgba(217, 217, 217, 0.25);
+}

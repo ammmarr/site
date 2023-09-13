@@ -1,0 +1,71 @@
+.addressCard{
+    margin-top: 30%;
+    color: var(--black, #1E1E1E);
+    border-radius: 16px;
+    background: var(--white, #FFF);
+    height: 70vh;
+    padding: 1.5rem;
+    position: relative;
+    box-shadow: 0px 4px 4px 0px rgba(217, 217, 217, 0.25); 
+    
+}
+.addressCard .title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+.addressCard .title h2{
+    color: var(--black, #1E1E1E);
+/* El Messiri/20px: Regular */
+font-family: Spline Sans;
+font-size: 20px;
+}
+
+.addressCard .title span{
+    color: var(--primary-color, #1D4179);
+/* El Messiri/20px: Regular */
+font-family: Spline Sans;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+}
+.addressCard .input{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    width: 50%;
+}
+.addressCard .input label{
+    color: var(--sub, #69696A);
+/* B1/B1: Regular */
+font-family: Spline Sans;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+}
+.addressCard .input input , .addressCard .input select{
+    /* width: 50%; */
+    border: 1px solid #DDE2EB;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border-radius: 0px;
+    height: 3rem;
+}
+.addressCard .layout{
+    display: flex;
+    gap: 10px;
+}
+.Edit{
+    border-radius: 9px;
+    background: var(--primary-color, #1D4179);
+    
+    /* Drop Shadow */
+    box-shadow: 0px 4px 4px 0px rgba(217, 217, 217, 0.25);
+    color: #FFF;
+    padding: 10px 32px;
+    
+    cursor: pointer;
+    margin-top: 380px;
+    z-index: 55555;
+}

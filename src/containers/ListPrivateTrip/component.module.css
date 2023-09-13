@@ -1,0 +1,224 @@
+/* handle popup  */
+.active_modal {
+    overflow-y: hidden;
+}
+
+.btn_modal {
+    padding: 10px 20px;
+    display: block;
+    margin: 100px auto 0;
+    font-size: 18px;
+}
+.modal {
+    z-index: 89789789;
+}
+.modal, .overlay {
+
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+}
+
+.overlay {
+    background: rgba(49,49,49,0.8);
+}
+.modal_content {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    padding: 14px 28px;
+    border-radius: 3px;
+    max-width: 80%;
+    min-width: 75%;
+}
+
+.close_modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 7px;
+}
+
+
+/* handle responsive private trip  */
+
+.container_private {
+    display:flex ;
+    justify-content: center;
+    
+}
+
+  @media  screen and (max-width: 1024px)  {
+    .container_private {
+        display:flex ;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+  }
+  @media  screen and (max-width: 700px)  {
+    .container_private {
+        display:flex ;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-top: 20%;
+    }
+
+  }
+  .imgComany_price{
+    
+  }
+.imgCompany{
+    position: absolute;
+    top: 0;
+}
+  @media  screen and (max-width: 500px)  {
+ 
+    .featured_image{
+      width: 80px;
+      height: 70px;
+    }
+    .busmodel{
+        font-size: 14px;
+        
+    }
+    .orsimilar{
+        font-size: 10px;
+
+    }
+
+    .card_data_content {
+        margin: 5px;
+    }
+  }
+  
+  @media  screen and (max-width: 280px)  {
+ 
+    .featured_image{
+      width: 40px;
+      height: 40px;
+    }
+    .busmodel{
+        font-size: 12px;
+        
+    }
+    .orsimilar{
+        font-size: 8px;
+
+    }
+
+    .card_data_content {
+        margin: 5px;
+    }
+    .link_select {
+        width: 40px;
+    }
+  }
+
+  /*  address popup */
+  .pushup{
+  }
+  .popHide {
+    display: none;
+  }
+  .itemAddress {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #dddddd;
+    text-align: left;
+  }
+  .pop_container{
+      position: absolute;
+      top: calc(40px);
+      left: calc(70px);
+      width: 90%;
+      height: auto;
+      padding-bottom: 10px;
+      background-color: #fffdfd;
+      border-radius: 8px ;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      overflow-y: scroll ;
+      z-index: 4;
+      
+  }
+  .popHide_to {
+    display: none;
+  }
+  .itemAddress_to {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #dddddd;
+    text-align: left;
+  }
+  .pop_container_to{
+    position: absolute;
+    top: calc(40px);
+    left: calc(70px);
+    width: 90%;
+    height: auto;
+    padding-bottom: 10px;
+    background-color: #fffdfd;
+    border-radius: 8px ;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow-y: scroll ;
+  }
+
+  @media  screen and (max-width: 900px)  {
+    .pop_container{
+        position: absolute;
+        top: calc(40px);
+        left: calc(30px);
+        width: 90%;
+        height: auto;
+        padding-bottom: 10px;
+        background-color: #fffdfd;
+        border-radius: 8px ;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        overflow-y: scroll ;
+        z-index: 4;
+        
+    }
+
+  }
+
+  /* two round  summary  */
+
+
+  @media  screen and (max-width: 800px)  {
+    
+    .twoRoundSummaryContainerCard {
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+    }
+    .Date_and_Time_minScreen {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+
+    }
+    .Date_and_Time_minScreen > *{
+     
+      margin-bottom: 10px;
+      width: 100%;
+      
+    }
+    .date_container {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+    }
+
+  }
+
+  /* date  */

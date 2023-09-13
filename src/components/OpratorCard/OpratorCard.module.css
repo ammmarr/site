@@ -1,0 +1,43 @@
+.card{
+    
+    background: #FFFFFF;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 90%;
+    border-radius: 8px;
+}
+.cardHeader{
+    padding-bottom:20px ;
+    border-bottom: 1px solid #E8ECF2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.cardHeader h2{
+    font-weight: 600;
+    font-size: 16PX;
+    color: #1E1E1E;
+}
+.main{
+    margin: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.main .ele {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.main .ele input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+    border: 1px solid #1D4078;
+    border-radius: 4px;
+    margin-right: 5px;
+
+}
+.main .ele{
+    color: #69696A;
+    text-transform: capitalize;
+}

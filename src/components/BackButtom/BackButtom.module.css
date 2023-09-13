@@ -1,0 +1,15 @@
+.Back{
+    display: flex;
+    padding-top: 1rem;
+    align-items: center;
+    gap: .3rem;
+}
+.Back span{
+    font-family: Spline Sans;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%;
+color: #FFF;
+cursor: pointer;
+}

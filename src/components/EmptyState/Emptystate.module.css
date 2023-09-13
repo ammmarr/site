@@ -1,0 +1,15 @@
+.EmptyState{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+.EmptyState h3{
+    color: var(--sub, #69696A);
+    /* B1/B1: Regular */
+    font-family: Spline Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+}

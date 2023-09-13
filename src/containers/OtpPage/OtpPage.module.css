@@ -1,0 +1,75 @@
+.Form{
+    background-image: url("../../images/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.FormCard{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    width: 90%;
+    background: #fff;
+    box-shadow: 0px 4px 4px 0px rgba(217, 217, 217, 0.25);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+.OtpHeading{
+    color: var(--black, #1E1E1E);
+font-family: Spline Sans;
+font-size: 32px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+margin: 2rem 0rem;
+}
+.OtpDesc{
+    color: var(--foundation-grey-g-100, #828282);
+width: 19rem;
+font-family: Spline Sans;
+font-size: 16px;
+font-style: normal;
+text-align: center;
+font-weight: 400;
+margin-bottom: 2rem;
+}
+.OtpBtn{
+    margin: 2rem 0rem;
+    padding: 12px 10rem;
+border-radius: 16px;
+background: var(--primary-color, #1D4179);
+color: var(--white, #FFF);
+/* El Messiri/20px: Regular */
+font-family: Spline Sans;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+}
+.OtpCode{color: var(--foundation-grey-g-600, #414141);
+    text-align: center;
+    /* Caption/CAPTION: Regular */
+    font-family: Spline Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+
+}
+.OtbLink{
+    color: var(--primary-color, #1D4179);
+/* B1/B1: Regular */
+font-family: Spline Sans;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+cursor: pointer;
+margin-bottom: 1rem;
+}

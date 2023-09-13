@@ -1,0 +1,195 @@
+
+.HideOver {
+    width: 100%;
+    height: 200px;
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+.back{
+    z-index: 99999;
+}
+.contain_date {
+    z-index: 2;
+}
+.routarSquer {
+    position: absolute;
+    bottom: -50px;
+    left: calc(50%);
+    width: 200px;
+    height: 450px;
+    z-index: 0;
+}
+.fromtospace{
+    width: 90%;
+
+}
+.fromtospace > * {
+    margin: 0 8px;
+} 
+.herizontalSpace {
+    margin-top: 10px;
+}
+.herizontalSpace > * {
+    margin: 0 5px;
+}
+
+@media screen and (max-width : 880px ){
+    .routarSquer {
+        position: absolute;
+        bottom: -50px;
+        left: calc(50%);
+        width: 200px;
+        height: 450px;
+        z-index: 0;
+    }
+    .HideOver {
+        width: 100%;
+        overflow-x: hidden;
+        overflow-y: visible;
+    }
+}
+
+@media screen and (max-width : 500px ){
+    .routarSquer {
+        position: absolute;
+        bottom: -50px;
+        left: calc(35%);
+        width: 200px;
+        height: 300px;
+        z-index: 0;
+    }
+    .HideOver {
+        width: 100%;
+        overflow-x: hidden;
+        overflow-y: visible;
+    }
+
+}
+
+@media screen and (max-width : 280px ){
+    .routarSquer {
+        position: absolute;
+        bottom: -50px;
+        left: calc(50%);
+        width: 200px;
+        height: 450px;
+        z-index: 0;
+    }
+   .from_name {
+    margin: 0;
+    font-size: 16px;
+    
+   }
+   .to_name{
+    margin: 0;
+    font-size: 16px;
+   }
+   .HideOver {
+    width: 100%;
+    height: 300px;
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+}
+
+/* two round  */
+
+@media  screen and (max-width: 800px) {
+.BusMinScreen{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border : none
+
+}
+.centerspace{
+    display: none;
+}
+.contentMin{
+    width: 100%;
+    margin-bottom: 16px;
+}
+.ButtonMin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.BusHome_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Fillter_component {
+    display: none;
+}
+
+}
+
+@media  screen and (max-width: 500px) {
+.BusMinScreen{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border : none
+}
+.centerspace{
+    display: none;
+}
+.contentMin{
+    width: 100%;
+    margin-bottom: 16px;
+    border: 10px solid #B9C4D5;
+    margin-top: 10px;
+}
+.ButtonMin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container_pay_Min {
+    border: 10px solid #B9C4D5;
+}
+.BusHome_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Fillter_component {
+    display: none;
+}
+}
+
+@media  screen and (max-width: 280px) {
+    .BusMinScreen{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border : none
+    }
+    .contentMin{
+        width: 100%;
+        margin-bottom: 16px;
+        border: 10px solid #B9C4D5;
+        margin-top: 10px;
+    }
+    .ButtonMin{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container_pay_Min {
+        border: 10px solid #B9C4D5;
+    }
+    .centerspace{
+        display: none;
+    }
+    .BusHome_container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .Fillter_component {
+        display: none;
+    }
+}
