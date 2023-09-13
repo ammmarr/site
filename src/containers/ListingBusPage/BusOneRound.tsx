@@ -1,14 +1,46 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BusHeader } from './BusHeader'
 import Styled from './page.module.css'
+import { t } from 'i18next'
+import axios from 'axios'
 
 export const BusOneRound = () => {
     
     const B_T:any = window.localStorage.getItem("bus_Ticket")
     const bus_Ticket = JSON.parse(B_T)
     console.log(bus_Ticket)
-      const t = bus_Ticket?.trips[0]?.station_from?.arrival_at
-      const time = t.substring(11 , 19)
+      const [time , setTime ] = useState()
+useEffect(() => {
+  const date_and_time = bus_Ticket?.trips[0]?.date_time
+  const time = date_and_time?.split(" ")
+  setTime(time[1])
+  
+} , [])
+      const PayNow = async () => {
+        const busTicket = bus_Ticket;
+        const paymentUrl = busTicket?.payment_url;
+        
+        const token = localStorage.getItem("token");
+      
+        const config = {
+          headers: {
+            accept: "application/json, text/plain, /",
+            "accept-language": "en",
+            Authorization: `Bearer ${token}`
+          }
+        };
+      
+        if (busTicket) {
+          try {
+            const response = await axios.post(paymentUrl, null, config);
+            const { url } = response?.data?.data;
+            console.log(url)
+            window.location.href = url;
+          } catch (error:any) {
+            console.log(error.message);
+          }
+        }
+      };
   return (
 
     <div>
@@ -32,7 +64,7 @@ export const BusOneRound = () => {
           </div>
 
           <div className="mt-7 flex h-auto w-full justify-between">
-            <img src={bus_Ticket?.data?.company_data?.avatar} alt="image here " />
+            <img src={bus_Ticket?.trips[0]?.company_data?.avatar} alt="image here "  className=' w-[60px] h-[40px]'/>
             <span className="justiy-end flex">
               <svg
                 className="mr-2"
@@ -142,13 +174,13 @@ export const BusOneRound = () => {
                     stroke-linejoin="round"
                   />
                 </svg>
-                <span>{bus_Ticket?.data?.tickets[0]?.seat_number}</span>
+                <span>{bus_Ticket?.trips[0].tickets[0]?.seat_number}</span>
               </div>
               <div className="text-[20px] font-[500] text-[#1E1E1E]">
                 {bus_Ticket?.data?.original_tickets_totals}
               </div>
               <div className="text-[12px] font-[400] text-[#69696A]">
-                Price per person
+                {t("Price per person")}
               </div>
             </div>
           </div>
@@ -231,7 +263,7 @@ export const BusOneRound = () => {
 
 <div className={`flex w-full items-center  justify-between pb-5 ${Styled.ButtonMin}`}>
   <span className="text-[20px] font-[500] text-[]"></span>
-  <button className="mt-5 h-[54px] w-[183px] rounded-lg bg-[#1D4179] text-white">
+  <button className="mt-5 h-[54px] w-[183px] rounded-lg bg-[#1D4179] text-white" onClick={PayNow}>
     Pay Now
   </button>
 </div>
