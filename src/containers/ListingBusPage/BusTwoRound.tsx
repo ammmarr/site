@@ -1,6 +1,7 @@
 import React from "react";
 import Styled from './page.module.css'
 import { BusHeader } from "./BusHeader";
+import axios from "axios";
 
 export const BusTwoRound = () => {
   const B_T: any = window.localStorage.getItem(
@@ -8,7 +9,29 @@ export const BusTwoRound = () => {
   );
   const bus_Ticket = JSON.parse(B_T);
   console.log(bus_Ticket,'bus_Ticket');
-
+  const PayNow = async () => {
+    const busTicket = bus_Ticket;
+    const paymentUrl = busTicket?.data.payment_url;
+    const token = localStorage.getItem("token");
+  
+    const config = {
+      headers: {
+        accept: "application/json, text/plain, /",
+        "accept-language": "en",
+        Authorization: `Bearer ${token}`
+      }
+    };
+  
+    if (busTicket) {
+      try {
+        const response = await axios.post(paymentUrl, null, config);
+        const { url } = response?.data?.data;
+        window.location.href = url;
+      } catch (error:any) {
+        console.log(error.message);
+      }
+    }
+  };
   return (
     <div>
        <div className="w-[100%] h-[100%]">
@@ -33,7 +56,7 @@ export const BusTwoRound = () => {
           </div>
 
           <div className="mt-7 flex h-auto w-full justify-between">
-          <img src={bus_Ticket?.data?.trips[0].company_data.avatar} alt="image here "className=" h-[40px]" />
+          <img src={bus_Ticket?.data?.trips[1].company_data.avatar} alt="image here "className=" h-[40px]" />
             <span className="justiy-end flex">
               <svg
                 className="mr-2"
@@ -389,7 +412,7 @@ export const BusTwoRound = () => {
 </div>
 <div className="flex w-full items-center  justify-between pb-5">
   <span className="text-[16px] font-[400] text-[]">Tax Included</span>
-  <span className="text-[16px] font-[400] text-[#1D4179]">{bus_Ticket?.data?.tickets_totals_after_discount}</span>
+  <span className="text-[16px] font-[400] text-[#1D4179]">{bus_Ticket?.data?.payment_fees}</span>
 </div>
 
 <div className="flex w-full items-center  justify-between pb-10">
@@ -401,7 +424,9 @@ export const BusTwoRound = () => {
 
 <div className={`flex w-full items-center  justify-between pb-5 ${Styled.ButtonMin}`}>
   <span className="text-[20px] font-[500] text-[]"></span>
-  <button className="mt-5 h-[54px] w-[183px] rounded-lg bg-[#1D4179] text-white">
+  <button className="mt-5 h-[54px] w-[183px] rounded-lg bg-[#1D4179] text-white"
+  onClick={PayNow}
+  >
     Pay Now
     {/* {bus_Ticket?.data?.payment_url} */}
   </button>
