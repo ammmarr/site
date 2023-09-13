@@ -413,7 +413,7 @@ export const PrivateTripOneRoundId: FC<RentalCarDatesRangeInputProps> = ({
                   {t("Confirm Pickup Date")}
                 </span>
 
-                <div className="flex h-[40px] items-center justify-between border-[1px] border-[#E8ECF2] ">
+                <div className="flex h-[50px] items-center justify-between border-[1px] border-[#E8ECF2] ">
                   <div
                     className={` relative  flex  sm:pt-0 ${className} ${
                       !!focusedInput
@@ -470,7 +470,7 @@ export const PrivateTripOneRoundId: FC<RentalCarDatesRangeInputProps> = ({
                   max="23:59"
                   step="60"
                   type="time"
-                  className="rounded-[4px] text-[#B9C4D5]  focus:border-[0px] focus:border-white after:focus:outline-none "
+                  className={`block w-full h-[50px] rounded-[0px] cursor-pointer border-neutral-200 bg-white focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 dark:border-neutral-700 dark:bg-neutral-900 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 `}
                 />
               </div>
             </div>
@@ -486,7 +486,7 @@ export const PrivateTripOneRoundId: FC<RentalCarDatesRangeInputProps> = ({
                 </span>
 
                 <div
-                  className={`relative  flex cursor-pointer items-center justify-start border-[1px] border-[#E8ECF2] `}
+                   className={`relative  flex cursor-pointer items-center justify-start border-[1px] border-[#E8ECF2] block w-full h-[50px] rounded-[0px] cursor-pointer border-neutral-200 bg-white focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 dark:border-neutral-700 dark:bg-neutral-900 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 `}
                   onClick={PopAddressfrom}
                 >
                   <div className=" flex items-center  justify-start">
@@ -577,7 +577,7 @@ export const PrivateTripOneRoundId: FC<RentalCarDatesRangeInputProps> = ({
                 </span>
 
                 <div
-                  className={`relative flex items-center justify-start border-[1px] border-[#E8ECF2] ${Styled.pushup}`}
+                   className={`relative  flex cursor-pointer items-center justify-start border-[1px] border-[#E8ECF2] block w-full h-[50px] rounded-[0px] cursor-pointer border-neutral-200 bg-white focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 dark:border-neutral-700 dark:bg-neutral-900 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 `}
                 >
                   <div className="flex items-center  justify-start">
                     <svg
