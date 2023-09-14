@@ -8,6 +8,8 @@ import we_bus_logo from "images/Rectangle 124.png";
 import blue_bus_logo from "images/image 4.png";
 import miniBus from "images/bus1.png";
 
+import { t } from "i18next";
+
 export interface FlightCardProps {
 	
 	refactoredData?: any;
@@ -34,7 +36,16 @@ const FlightCard: FC<FlightCardProps> = ({
 	  
 		return uniqueData;
 	  }
-	  
+	
+	   const  duration =  (startdate: Date , enddate: Date  ) => {
+               try {
+				const duration = enddate.getTime() - startdate.getTime()
+				return duration 
+			   } catch (error) { 
+				console.log(error)
+			   }
+	   }
+   
 	  refactoredData = removeDuplicates(refactoredData);
 	  console.log("refactory data ",refactoredData)
 	const navigate = useNavigate();
@@ -53,7 +64,7 @@ const FlightCard: FC<FlightCardProps> = ({
 				<div>
 					<div className="w-24 flex-shrink-0 lg:w-36">
 					{!item?.gateway_id?.includes("WEBUS") && (
-							<img src={blue_bus_logo} className="w-24 flex-shrink-0 lg:w-[70px] h-[70px]" alt="" />
+							<img src={blue_bus_logo} className="w-24 flex-shrink-0 lg:w-[70px] h-[70px] " alt=""  />
 						)}
 					{item?.gateway_id?.includes("WEBUS") && (
 							<img src={we_bus_logo} className=" " alt="" />
@@ -90,14 +101,15 @@ const FlightCard: FC<FlightCardProps> = ({
 
 						</div>
 						
-						<div className="ml-[17.2px]  w-[428px] my-[16px]">
+						<div className="ml-[17.2px]  w-[428px] my-[16px] rtl:mr-3">
 							<div className="mb-[15px]">
-								<h4 className=" text-[16px] font-[600]  mb-[8px]" style={{color:"#1E1E1E",lineHeight:"150.7%"}}>{item.city_from_name} ({item.travel_from})</h4>
-								<h4 className=" text-[16px] font-[400]" style={{color:"#69696A",lineHeight:"100.7%"}}>{item.travel_at}</h4>
+								<h4 className=" text-[16px] font-[600]  mb-[8px]" style={{color:"#1E1E1E",lineHeight:"150.7%"}}>
+									{item.city_from_name} ({item.travel_from})</h4>
+								<h4 className=" text-[16px] font-[400]" style={{color:"#69696A",lineHeight:"100.7%"}}>{item?.travel_at}</h4>
 							</div>
 							<div>
-								<h4 className=" text-[16px] font-[600] mb-[8px]" style={{color:"#1E1E1E",lineHeight:"150.7%"}}>{item.city_to_name}  ({item.travel_to})</h4>
-								<h4 className=" text-[16px] font-[400]" style={{color:"#69696A",lineHeight:"100.7%"}}>{item.arrival_at}</h4>
+								<h4 className=" text-[16px] font-[600] mb-[8px]" style={{color:"#1E1E1E",lineHeight:"150.7%"}}>{item?.city_to_name}  ({item?.travel_to})</h4>
+								<h4 className=" text-[16px] font-[400]" style={{color:"#69696A",lineHeight:"100.7%"}}>{item?.arrival_at}</h4>
 							</div>
 						</div>
 							
@@ -133,8 +145,8 @@ const FlightCard: FC<FlightCardProps> = ({
 									">
 									<img src={tv} className="mr-1 w-[40px] h-[40px]" alt="" />
 									<img src={conditioning} className=" w-[40px] h-[40px]" alt="" />
-									<div className="h-[40px] w-[120px] align-middle justify-center p-[8px] ml-4 bg-[#E8ECF2] text-[16px] text-[#69696A]"  style={{borderRadius:"24px",textAlign:"center"}}>Deluxe Plus </div>
-									<div className="h-[40px] w-[120px] align-middle justify-center p-[8px]   text-[16px] text-[#69696A]"  style={{borderRadius:"24px",textAlign:"center"}}>{item.available_seats} seats free </div>
+									<div className="h-[40px] w-[120px] align-middle justify-center items-center p-[8px] ml-4 bg-[#E8ECF2] text-[14px] text-[#69696A]"  style={{borderRadius:"24px",textAlign:"center"}}>{item?.classes} </div>
+									<div className="h-[40px] w-[120px] align-middle justify-center p-[8px]   text-[16px] text-[#69696A]"  style={{borderRadius:"24px",textAlign:"center"}}> {item?.available_seats} seats free </div>
 									</div>
 								)}
 				{item?.gateway_id?.includes("WEBUS") && (
@@ -143,8 +155,8 @@ const FlightCard: FC<FlightCardProps> = ({
 									max-sm:justify-between
 									">
 										{/* <img src={tv} className="" alt="" /> */}
-									<img  src={conditioning} className=" w-[40px] h-[40px]" alt="" />
-									<div className="h-[40px] w-[120px] align-middle justify-center p-[8px] ml-4 bg-[#E8ECF2] text-[16px] text-[#69696A]
+									<img  src={conditioning} className=" w-[40px] h-[40px] " alt="" />
+									<div className="h-[40px] w-[120px] rtl:mr-4 align-middle justify-center p-[8px] ml-4 bg-[#E8ECF2] text-[16px] text-[#69696A]
 									sm:text-[12px]
 									max-sm:text-[12px]
 									"  style={{borderRadius:"24px",textAlign:"center"}}>Deluxe Plus </div>
@@ -160,13 +172,13 @@ const FlightCard: FC<FlightCardProps> = ({
 					
 					<div className="flex flex-col justify-between">
 						<h4 className="text-[20px] font-[700] text-[#1E1E1E]">LE{item?.prices_start_with}</h4>
-						<h4 className="text-[12px]">price per person</h4>
+						<h4 className="text-[12px] rtl:ml-3">{t("price per person")}</h4>
 					</div>
 					<div className="h-full justify-center align-middle "><button className="bg-[#1D4179] text-white h-full w-[110px] text-[20px] ml-[16px]" style={{borderRadius:"9px"}}
 					onClick={() => {
 						navigate(item?.trip_url)
 					}}
-					>select</button></div>
+					>{t("select")}</button></div>
 				</div>
 			</div>
 			</div>

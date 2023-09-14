@@ -50,7 +50,7 @@ const CheckOutPage: FC<CheckOutPageProps> = ({ className = "" }) => {
   const [seatsType, setSeatsType] = useState("");
   const [end_Date, setend_Date] = useState();
   const [flagbus, setFlagbus] = useState("any");
-  const [isFirsftTripFinshed, setIsFirsftTripFinshed] = useState(false);
+  
   const [ID, setID] = useState();
   const navigate = useNavigate();
   const location = useLocation();
@@ -59,16 +59,18 @@ const CheckOutPage: FC<CheckOutPageProps> = ({ className = "" }) => {
     "dropOffLocationType"
   );
 
- 
 
-  const fromhead_en = window.localStorage.getItem("fromhead_en")
-  const tohead_en = window.localStorage.getItem("tohead_en")
+
 
   const tf: any = window.localStorage.getItem("travle_from_bus");
   const travle_from_bus = JSON.parse(tf);
 
   const tt: any = window.localStorage.getItem("travle_to_bus");
   const travle_to_bus = JSON.parse(tt);
+
+  const isFirsftTripFinshed = window.localStorage.getItem("isFirsftTripFinshed")
+ console.log("isFirsftTripFinshed" , isFirsftTripFinshed)
+
   useEffect(() => {
     if (dropOffLocationType !== "oneWay") {
       const END: any = window.localStorage.getItem("busEndDate");
@@ -95,6 +97,7 @@ const CheckOutPage: FC<CheckOutPageProps> = ({ className = "" }) => {
       setCityTo(data?.[6]);
       setType(data?.[7]);
       setSeatsType(data?.[8]);
+      
       sessionStorage.setItem(
         "path",
         location?.pathname +
@@ -258,7 +261,7 @@ const CheckOutPage: FC<CheckOutPageProps> = ({ className = "" }) => {
                   i18next.language === "en"
                     ? travle_to_bus?.name_en
                     : travle_to_bus?.name_ar
-                }`
+                }/first`
               );
 
           setLoading(false);
@@ -286,7 +289,7 @@ const CheckOutPage: FC<CheckOutPageProps> = ({ className = "" }) => {
     const seatsList: any = [];
     for (const property in selectedSeatsList) {
       seats.forEach((item: any) => {
-        console.log('item?.seat_type_id',item?.seat_type_id);
+        
         
         if (+item?.id === +selectedSeatsList[property]) {
           seatsList.push({
@@ -307,7 +310,7 @@ const CheckOutPage: FC<CheckOutPageProps> = ({ className = "" }) => {
   // "to_location_id": 53,
   // "date": "2023-10-01",
 		// let seat_type_id = seatsList[0]?.seat_type_id;\
-    console.log('end_Date',end_Date,seatsList);
+   
     
       const data = {
         trip_id: id,
@@ -418,28 +421,33 @@ const CheckOutPage: FC<CheckOutPageProps> = ({ className = "" }) => {
   const RenderButton = () => {
     if (dropOffLocationType === "oneWay") {
       return (
-        <ButtonPrimary loading={loading} onClick={() => createOneRound()}>
-          {t("confirmTicket")}
+        <ButtonPrimary  className="ml-3 bg-green-400 text-black hover:bg-green-600" loading={loading} onClick={() => createOneRound()}>
+           {t("go to summary")}
         </ButtonPrimary>
       );
     } else {
       
-
+       if(isFirsftTripFinshed === "first") {
+            
         return (
-          <div className="flex justify-start items-center ">
-          <ButtonPrimary  loading={loading} onClick={() => createFirsttrip()}>
-            {t("confirmTicket")}
-          </ButtonPrimary>
           <ButtonPrimary
           className="ml-3 bg-green-400 text-black hover:bg-green-600" 
           loading={loading}
           onClick={() => createReturnTicket()}>
           {t("go to summary")}
           </ButtonPrimary>
-
-          </div>
         )
 
+       } else {
+
+        return (
+          <ButtonPrimary  loading={loading} onClick={() => createFirsttrip()}>
+            {t("confirmTicket")}
+          </ButtonPrimary>    
+           )
+
+       }
+        
       } 
         
 
@@ -524,7 +532,7 @@ const CheckOutPage: FC<CheckOutPageProps> = ({ className = "" }) => {
           )}
           {!!priceData && (
             <div className="my-3  w-full">
-              <p className="text-lg text-green-500">
+              {/* <p className="text-lg text-green-500">
                 {t("totalPrice", { total: priceData.total })}
                 {priceData?.discount > 0 && (
                   <>
@@ -543,20 +551,13 @@ const CheckOutPage: FC<CheckOutPageProps> = ({ className = "" }) => {
                     </span>
                   </>
                 )}
-              </p>
+              </p> */}
             </div>
           )}
           <div className="mt-6">
             <div className="pt-8">
               {!orderId && RenderButton()}
-              {!!orderId && (
-                <ButtonPrimary
-                  loading={loading}
-                  onClick={() => createPayments()}
-                >
-                  {t("confirmPay")}
-                </ButtonPrimary>
-              )}
+           
             </div>
           </div>
         </div>
@@ -598,14 +599,18 @@ const CheckOutPage: FC<CheckOutPageProps> = ({ className = "" }) => {
         <div className="flex flex-col items-center justify-center text-white">
           <span className="absolute z-0 h-[20vh] w-[20vh]   rotate-45 rounded bg-[#1d4179]"></span>
           <h3 className="z-10">
-            {fromhead_en} - {tohead_en}
+            {i18next.language === "en"
+                    ? travle_from_bus?.name_en
+                    : travle_from_bus?.name_ar} - {i18next.language === "en"
+                    ? travle_to_bus?.name_en
+                    : travle_to_bus?.name_ar}
           </h3>
           <h3 className="z-10">{date} . Economy class</h3>
         </div>
       </div>
       <main className="container w-full mb-24 mt-11 flex flex-col-reverse lg:mb-32 lg:flex-row">
         <div className=" flex justify-between itmes-start   lg:w-3/5 lg:pr-10 xl:w-2/3 ">{renderMain()}</div>
-        <div className=" container bg-white w-[30%] h-[300px] rounded-lg mt-[120px] flex flex-col">
+        {/* <div className=" container bg-white w-[30%] h-[300px] rounded-lg mt-[120px] flex flex-col">
           <div className="flex justify-start items-center mt-3">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path d="M12 6V12H16.5M21 12C21 13.1819 20.7672 14.3522 20.3149 15.4442C19.8626 16.5361 19.1997 17.5282 18.364 18.364C17.5282 19.1997 16.5361 19.8626 15.4442 20.3149C14.3522 20.7672 13.1819 21 12 21C10.8181 21 9.64778 20.7672 8.55585 20.3149C7.46392 19.8626 6.47177 19.1997 5.63604 18.364C4.80031 17.5282 4.13738 16.5361 3.68508 15.4442C3.23279 14.3522 3 13.1819 3 12C3 9.61305 3.94821 7.32387 5.63604 5.63604C7.32387 3.94821 9.61305 3 12 3C14.3869 3 16.6761 3.94821 18.364 5.63604C20.0518 7.32387 21 9.61305 21 12Z" stroke="#FFB229" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -658,7 +663,7 @@ const CheckOutPage: FC<CheckOutPageProps> = ({ className = "" }) => {
             <span className="text-[16px] font-[400] text-[#1D4179]">LE 987</span>
           </div>
 
-        </div>
+        </div> */}
       </main>
       <PaymentDetailsModal
         iframe={iframe}

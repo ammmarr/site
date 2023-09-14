@@ -301,7 +301,7 @@ const BusResultsFilters: FC<BusResultsFiltersProps> = React.memo(props => {
 
     return (
         <>
-            <form className={className}>
+            <form className={`${className}`}>
                 <div className="mb-10 flex h-6 h-fit w-full flex-col rounded-lg bg-white p-3 shadow-md">
                     <h5 className="border-w border-b-2 p-2">Bus times</h5>
                     <div className="h-fit w-full ">

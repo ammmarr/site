@@ -31,7 +31,7 @@ export default function AvatarDropdown() {
 	const solutions = [
 		{
 			name: t("accountDetails"),
-			href: "/author",
+			href: "/profile",
 			icon: UserCircleIcon,
 		},
 	];

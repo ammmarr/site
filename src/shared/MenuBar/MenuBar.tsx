@@ -27,7 +27,7 @@ const MenuBar: React.FC<MenuBarProps> = ({
 			<Transition appear show={isVisable} as={Fragment}>
 				<Dialog
 					as="div"
-					className="relative z-50 overflow-hidden"
+					className="relative z-50 overflow-hidden "
 					onClose={handleCloseMenu}
 				>
 					<Transition.Child
@@ -67,7 +67,7 @@ const MenuBar: React.FC<MenuBarProps> = ({
 		<>
 			<button
 				onClick={handleOpenMenu}
-				className={`flex items-center justify-center focus:outline-none ${className}`}
+				className={`flex items-center mt-2 sm:hidden justify-center focus:outline-none ${className}`}
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

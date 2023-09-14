@@ -47,7 +47,7 @@ border-radius: 24px;
 .element{
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: .9rem;
     width: 35%;
 }
 .element label{
@@ -73,6 +73,7 @@ margin-bottom: 1rem;
 background: var(--primary-color, #1D4179);
 padding: 12px 4rem;
 margin-bottom: 1rem;
+margin-top: 1rem;
 color: var(--white, #FFF);
 /* El Messiri/20px: Regular */
 font-family: Spline Sans;
@@ -80,6 +81,44 @@ font-style: normal;
 font-weight: 400;
 /* margin-right: 2.5rem; */
 font-size: 20px;
+/* margin-right: 2rem; */
+}
+.otp{
+    
+    height: 4.2rem;
+    width: 4.2rem !important;
+     border: 1px solid #ECECEC;
+     border-radius:4px;
+        /* margin-top: .5rem; */
+        font-size: 1.5rem;
+ 
+}
+@media(max-width: 500px){
+    .Form{
+        width: 100%;
+    }
+  
+    .actions {
+    
+     
+    }
+    .actions button{
+        padding: 4px 3rem;
+    }
+  
+    .element{
+    align-self: flex-start;
+    margin-left: 1rem;
+    }
+    
+    .element input{
+        width:20rem
+    }
+    .otp {
+        width: 2.5rem !important;
+        height: 2.5rem;
+     }
+  
 }
 /* .phoneNumber {
     display: flex !important;

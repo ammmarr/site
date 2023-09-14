@@ -113,3 +113,13 @@ line-height: normal;
     /* Drop Shadow */
     box-shadow: 0px 4px 4px 0px rgba(217, 217, 217, 0.25);
 }
+@media(max-width:779px ){
+	.bookingCard{
+        margin-top:2rem;
+        width: 100%;
+    }
+    .bookingCard .bookingList li , .bookingCard .bookingList .active{
+        font-size: 8px;
+        font-weight: 400;
+    }
+  }

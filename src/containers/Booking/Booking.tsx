@@ -6,9 +6,9 @@ import BookingCard from 'components/BookingCard/BookingCard';
 const Booking = () => {
   return (
     <div className={classes.layout}>
-        <div className='container'>
+        <div className='container '>
             <BackButtom />
-            <div className="two mt-5">
+            <div className="two mt-5 w-full">
                 <ProfileCard />
                 <BookingCard />
             </div>
@@ -17,4 +17,4 @@ const Booking = () => {
   )
 }
 
-export default Booking
+export default Booking;

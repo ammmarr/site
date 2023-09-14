@@ -61,7 +61,7 @@ const RentalCarDatesRangeInput: FC<RentalCarDatesRangeInputProps> = ({
     const [END_DATE , setEND_DATE] = useState()
 
 	window.localStorage.setItem("busEndDate" , JSON.stringify(END_DATE))
-	console.log("flightClassState" , flightClassState)
+	
 
 	useEffect(() => {
 		const end_date:any = stateDate?.endDate?.format("YYYY-MM-DD")    
@@ -112,8 +112,8 @@ const RentalCarDatesRangeInput: FC<RentalCarDatesRangeInputProps> = ({
 					<span
 						className={`mt-1 flex text-sm font-light leading-none text-neutral-400 ${className}`}
 					>
-						{stateDate.startDate
-							? stateDate.startDate.format("DD MMM")
+						{stateDate.startDate && stateDate.endDate
+							? <div className="text-[12px]">{stateDate.startDate.format("DD MMM")} to {stateDate.endDate.format("DD MMM")}</div>
 							: "Enter date"}
 					</span>
 				</div>

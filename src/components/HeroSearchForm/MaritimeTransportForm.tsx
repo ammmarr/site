@@ -46,7 +46,8 @@ const MaritimeTransportForm: FC<FlightSearchFormProps> = ({
 	>(null);
 
 	const [guests, setGuests] = useState(0);
-
+    window.localStorage.setItem("maritime_from" , JSON.stringify(travelFrom))
+    window.localStorage.setItem("maritime_to" ,  JSON.stringify(travelTo))
 	const { search } = useLocation();
 
 	// USER EFFECT

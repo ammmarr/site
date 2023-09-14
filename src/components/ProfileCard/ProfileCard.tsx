@@ -20,7 +20,7 @@ const ProfileCard = () => {
     window.location.reload();
 };
   return (
-    <div className={classes.cardLinks}>
+    <div className={`  ${classes.cardLinks}`}>
         <div className={classes.avatar}>
             <img  src={Logo} alt='logo'/>
             <h2>Hi, there!</h2>

@@ -96,11 +96,11 @@ export const BusTwoRound = () => {
             </svg>
 
             <div className="ml-3 flex flex-col rtl:mr-3">
-              <span>Alexandria ( {bus_Ticket?.data?.trips[0].station_from?.name} )</span>
+              <span>{bus_Ticket?.data?.trips[0].station_from?.city_name} ( {bus_Ticket?.data?.trips[0].station_from?.name} )</span>
               <span className="pb-[15px]">
                 {bus_Ticket?.data?.trips[0].station_from?.arrival_at}
               </span>
-              <span>Alexandria ( {bus_Ticket?.data?.trips[0].station_to?.name})</span>
+              <span>{bus_Ticket?.data?.trips[0].station_to?.city_name} ( {bus_Ticket?.data?.trips[0].station_to?.name})</span>
               <span className="">
                 {bus_Ticket?.data?.trips[0].station_to?.arrival_at}
               </span>
@@ -238,11 +238,11 @@ export const BusTwoRound = () => {
             </svg>
 
             <div className="ml-3 flex flex-col rtl:mr-3">
-              <span>Alexandria ( {bus_Ticket?.data?.trips[1].station_from?.name} )</span>
+              <span>{bus_Ticket?.data?.trips[1].station_from?.city_name}  ( {bus_Ticket?.data?.trips[1].station_from?.name} )</span>
               <span className="pb-[15px]">
                 {bus_Ticket?.data?.trips[1].station_from?.arrival_at}
               </span>
-              <span>Alexandria ( {bus_Ticket?.data?.trips[1].station_to?.name})</span>
+              <span>{bus_Ticket?.data?.trips[1].station_to?.city_name}  ( {bus_Ticket?.data?.trips[1].station_to?.name})</span>
               <span className="">
                 {bus_Ticket?.data?.trips[1].station_to?.arrival_at}
               </span>

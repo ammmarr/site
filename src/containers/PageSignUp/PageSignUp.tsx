@@ -5,7 +5,7 @@ import googleSvg from "images/Google.svg";
 import { Helmet } from "react-helmet";
 import Input from "shared/Input/Input";
 import ButtonPrimary from "shared/Button/ButtonPrimary";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useAddLogin } from "hooks/DataSend/useLogin";
 import useInput from "hooks/useInput";
@@ -15,8 +15,10 @@ import {
 	LoginSocialFacebook,
 	IResolveParams,
 } from "reactjs-social-login";
-
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 import { AppContext } from "components/context/AppContext";
+import classes from "./PageSignUp.module.css";
 import OtpInput from "react-otp-input";
 export interface PageSignUpProps {
 	className?: string;
@@ -37,6 +39,7 @@ const loginSocials = [
 
 const REDIRECT_URI = "https://www.telefreik.com/login";
 const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
+	const navigate =  useNavigate();
 	let userAgent = window.navigator.userAgent;
 	const { token } = useContext(AppContext);
 	const { t } = useTranslation();
@@ -112,216 +115,307 @@ const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
 		setProvider("");
 		alert("logout success");
 	}, []);
-	return (
-		<div className={`nc-PageSignUp  ${className}`} data-nc-id="PageSignUp">
-			<Helmet>
-				<title>Sign up || Telefreik For Booking</title>
-			</Helmet>
-			<div className="container mb-24 lg:mb-32">
-				<h2 className="my-20 flex items-center justify-center text-3xl font-semibold leading-[115%] text-neutral-900 dark:text-neutral-100 md:text-5xl md:leading-[115%]">
-					{t("signUp")}
-				</h2>
-				<div className="mx-auto max-w-md space-y-6 ">
-					<div className="grid gap-3">
-						{/* <LoginSocialFacebook
-              appId={process.env.REACT_APP_FB_APP_ID || ""}
-              fieldsProfile={
-                "id,first_name,last_name,middle_name,name,name_format,picture,short_name,email,gender"
-              }
-              onLoginStart={onLoginStart}
-              onLogoutSuccess={onLogoutSuccess}
-              redirect_uri={REDIRECT_URI}
-              onResolve={({ provider, data }: IResolveParams) => {
-                setProvider(provider);
-                setProfile(data);
-              }}
-              onReject={(err) => {
-                console.log(err);
-              }}
-            >
-              <a className="nc-will-change-transform  cursor-pointer flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]">
-                <img
-                  className="flex-shrink-0"
-                  src={facebookSvg}
-                  alt={"facebook"}
-                />
-                <h3 className="flex-grow text-center text-sm font-medium text-neutral-700 dark:text-neutral-300 sm:text-sm">
-                  {t("continueWithFacebook")}
-                </h3>
-              </a>
-            </LoginSocialFacebook> */}
+	// return (
+	
+	// 	<div className={classes.Form}>
+	// 		<Helmet>
+	// 			<title>Sign up || Telefreik For Booking</title>
+	// 		</Helmet>
+	// 		<div className=" mb-24 lg:mb-32">
+	// 			{/* <h2 className="my-20 flex items-center justify-center text-3xl font-semibold leading-[115%] text-neutral-900 dark:text-neutral-100 md:text-5xl md:leading-[115%]">
+	// 				{t("signUp")}
+	// 			</h2> */}
+	// 			<div className="mx-auto  space-y-6 ">
+	// 				<div className="grid gap-3">
+	// 					{/* <LoginSocialFacebook
+    //           appId={process.env.REACT_APP_FB_APP_ID || ""}
+    //           fieldsProfile={
+    //             "id,first_name,last_name,middle_name,name,name_format,picture,short_name,email,gender"
+    //           }
+    //           onLoginStart={onLoginStart}
+    //           onLogoutSuccess={onLogoutSuccess}
+    //           redirect_uri={REDIRECT_URI}
+    //           onResolve={({ provider, data }: IResolveParams) => {
+    //             setProvider(provider);
+    //             setProfile(data);
+    //           }}
+    //           onReject={(err) => {
+    //             console.log(err);
+    //           }}
+    //         >
+    //           <a className="nc-will-change-transform  cursor-pointer flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]">
+    //             <img
+    //               className="flex-shrink-0"
+    //               src={facebookSvg}
+    //               alt={"facebook"}
+    //             />
+    //             <h3 className="flex-grow text-center text-sm font-medium text-neutral-700 dark:text-neutral-300 sm:text-sm">
+    //               {t("continueWithFacebook")}
+    //             </h3>
+    //           </a>
+    //         </LoginSocialFacebook> */}
 
-						{/* <LoginSocialGoogle
-              client_id={process.env.REACT_APP_GG_APP_ID || ""}
-              onLoginStart={onLoginStart}
-              redirect_uri={REDIRECT_URI}
-              scope="openid profile email"
-              discoveryDocs="claims_supported"
-              access_type="offline"
-              onResolve={({ provider, data }: IResolveParams) => {
-                setProvider(provider);
-                setProfile(data);
-              }}
-              onReject={(err) => {
-                console.log(err);
-              }}
-            >
-              <a className="nc-will-change-transform  cursor-pointer  flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]">
-                <img className="flex-shrink-0" src={googleSvg} alt={"google"} />
-                <h3 className="flex-grow text-center text-sm font-medium text-neutral-700 dark:text-neutral-300 sm:text-sm">
-                  {t("continueWithGoogle")}
-                </h3>
-              </a>
-            </LoginSocialGoogle> */}
-					</div>
-					{/* FORM */}
-					<form className="grid grid-cols-1 gap-6" onSubmit={submitHandler}>
-						<label className="block">
-							<span className="text-neutral-800 dark:text-neutral-200">
-								{t("phoneNumber")}
-							</span>
-							<Input
-								type="text"
-								placeholder="0105478...."
-								className="mt-1"
-								value={phone}
-								onChange={phoneChange}
-								onBlur={phoneBlur}
-							/>
-							{phoneHasError && (
-								<p className="mt-1 text-red-900">
-									{t("Enter a valid phone number")}
-								</p>
-							)}
-						</label>
-						<label className="block">
-							<span className="text-neutral-800 dark:text-neutral-200">
-								{t("email")}
-							</span>
-							<Input
-								type="text"
-								placeholder="email@yahoo.com"
-								className="mt-1"
-								value={email}
-								onChange={emailChange}
-								onBlur={emailBlur}
-							/>
-							{emailHasError && (
-								<p className="mt-1 text-red-900">{t("validEmail")}</p>
-							)}
-						</label>
+	// 					{/* <LoginSocialGoogle
+    //           client_id={process.env.REACT_APP_GG_APP_ID || ""}
+    //           onLoginStart={onLoginStart}
+    //           redirect_uri={REDIRECT_URI}
+    //           scope="openid profile email"
+    //           discoveryDocs="claims_supported"
+    //           access_type="offline"
+    //           onResolve={({ provider, data }: IResolveParams) => {
+    //             setProvider(provider);
+    //             setProfile(data);
+    //           }}
+    //           onReject={(err) => {
+    //             console.log(err);
+    //           }}
+    //         >
+    //           <a className="nc-will-change-transform  cursor-pointer  flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]">
+    //             <img className="flex-shrink-0" src={googleSvg} alt={"google"} />
+    //             <h3 className="flex-grow text-center text-sm font-medium text-neutral-700 dark:text-neutral-300 sm:text-sm">
+    //               {t("continueWithGoogle")}
+    //             </h3>
+    //           </a>
+    //         </LoginSocialGoogle> */}
+	// 				</div >
+	// 				{/* FORM */}
+	// 					<div className={classes.FromCard}>
+	// 				<form className="grid grid-cols-1 gap-6 bg-white w-[95%] " onSubmit={submitHandler}>
+	// 					<label className="block">
+	// 						<span className="text-neutral-800 dark:text-neutral-200">
+	// 							{t("phoneNumber")}
+	// 						</span>
+	// 						<Input
+	// 							type="text"
+	// 							placeholder="0105478...."
+	// 							className="mt-1"
+	// 							value={phone}
+	// 							onChange={phoneChange}
+	// 							onBlur={phoneBlur}
+	// 						/>
+	// 						{phoneHasError && (
+	// 							<p className="mt-1 text-red-900">
+	// 								{t("Enter a valid phone number")}
+	// 							</p>
+	// 						)}
+	// 					</label>
+	// 					<label className="block">
+	// 						<span className="text-neutral-800 dark:text-neutral-200">
+	// 							{t("email")}
+	// 						</span>
+	// 						<Input
+	// 							type="text"
+	// 							placeholder="email@yahoo.com"
+	// 							className="mt-1"
+	// 							value={email}
+	// 							onChange={emailChange}
+	// 							onBlur={emailBlur}
+	// 						/>
+	// 						{emailHasError && (
+	// 							<p className="mt-1 text-red-900">{t("validEmail")}</p>
+	// 						)}
+	// 					</label>
 
-						<label className="block">
-							<span className="text-neutral-800 dark:text-neutral-200">
-								{t("userName")}
-							</span>
-							<Input
-								type="text"
-								placeholder={t("userName")!}
-								className="mt-1"
-								value={name}
-								onChange={nameChange}
-								onBlur={nameBlur}
-							/>
-							{nameHasError && (
-								<p className="mt-1 text-red-900">{t("validName")}</p>
-							)}
-						</label>
-						<label className="block">
-							<span className="text-neutral-800 dark:text-neutral-200">
-								{t("password")}
-							</span>
-							<OtpInput
-								value={password}
-								inputStyle={{
-									height: "3.5rem",
-									width: "3.5rem",
-									border: "1px solid rgb(67,56,202)",
-									borderRadius: 4,
-									color: "text-neutral-800 dark:text-neutral-200",
-									fontWight: "bolder",
-									fontSize: "1.5rem",
-									marginTop: "0.5rem",
-								}}
-								hasErrored={password?.length <= 6}
+	// 					<label className="block">
+	// 						<span className="text-neutral-800 dark:text-neutral-200">
+	// 							{t("userName")}
+	// 						</span>
+	// 						<Input
+	// 							type="text"
+	// 							placeholder={t("userName")!}
+	// 							className="mt-1"
+	// 							value={name}
+	// 							onChange={nameChange}
+	// 							onBlur={nameBlur}
+	// 						/>
+	// 						{nameHasError && (
+	// 							<p className="mt-1 text-red-900">{t("validName")}</p>
+	// 						)}
+	// 					</label>
+	// 					<label className="block">
+	// 						<span className="text-neutral-800 dark:text-neutral-200">
+	// 							{t("password")}
+	// 						</span>
+	// 						<OtpInput
+	// 							value={password}
+	// 							inputStyle={{
+	// 								height: "3.5rem",
+	// 								width: "3.5rem",
+	// 								border: "1px solid rgb(67,56,202)",
+	// 								borderRadius: 4,
+	// 								color: "text-neutral-800 dark:text-neutral-200",
+	// 								fontWight: "bolder",
+	// 								fontSize: "1.5rem",
+	// 								marginTop: "0.5rem",
+	// 							}}
+	// 							hasErrored={password?.length <= 6}
+	// 							onChange={(e: any) => {
+	// 								const event: any = {
+	// 									target: {
+	// 										value: e,
+	// 									},
+	// 								};
+	// 								passwordChange(event);
+	// 							}}
+	// 							placeholder="------"
+	// 							isInputNum={true}
+	// 							numInputs={6}
+	// 							separator={<div style={{ marginInline: "0.5rem" }} />}
+	// 							containerStyle={{ direction: "ltr" }}
+	// 						/>
+	// 						{passwordHasError && (
+	// 							<p className="mt-1 text-red-900">{t("inValidPassword")}</p>
+	// 						)}
+	// 					</label>
+	// 					<label className="block">
+	// 						<span className="text-neutral-800 dark:text-neutral-200">
+	// 							{t("confirmPassword")}
+	// 						</span>
+	// 						<OtpInput
+	// 							value={confirmPassword}
+	// 							inputStyle={{
+	// 								height: "3.5rem",
+	// 								width: "3.5rem",
+	// 								border: "1px solid rgb(67,56,202)",
+	// 								borderRadius: 4,
+	// 								color: "text-neutral-800 dark:text-neutral-200",
+	// 								fontWight: "bolder",
+	// 								fontSize: "1.5rem",
+	// 								marginTop: "0.5rem",
+	// 							}}
+	// 							hasErrored={password?.length <= 6}
+	// 							onChange={(e: any) => {
+	// 								const event: any = {
+	// 									target: {
+	// 										value: e,
+	// 									},
+	// 								};
+	// 								confirmPasswordChange(event);
+	// 							}}
+	// 							placeholder="------"
+	// 							isInputNum={true}
+	// 							numInputs={6}
+	// 							separator={<div style={{ marginInline: "0.5rem" }} />}
+	// 							containerStyle={{ direction: "ltr" }}
+	// 						/>
+	// 						{!!password && confirmPasswordHasError && (
+	// 							<p className="mt-1 text-red-900">{t("notMatchedPassword")}</p>
+	// 						)}
+	// 					</label>
+	// 					{/* <ButtonPrimary type="submit">{t("continue")}</ButtonPrimary> */}
+	// 					<ButtonPrimary type="submit">{t("continue")}</ButtonPrimary>
+	// 				</form>
+	// 				{/* OR */}
+	// 				<div className="relative text-center">
+	// 					<span className="relative z-10 inline-block bg-white px-4 text-sm font-medium dark:bg-neutral-900 dark:text-neutral-400">
+	// 						{t("or")}
+	// 					</span>
+	// 					<div className="absolute left-0 top-1/2 w-full -translate-y-1/2 transform border border-neutral-100 dark:border-neutral-800"></div>
+	// 				</div>
+
+	// 				{/* ==== */}
+
+	// 				<span className="block text-center text-neutral-700 dark:text-neutral-300">
+	// 					{t("alreadyHaveAnAccount")} {` `}
+	// 					{!token && (
+	// 						<Link to="/login">
+	// 							<span className="text-primary-6000">{t("login")}</span>
+	// 						</Link>
+	// 					)}
+	// 				</span>
+	// 			</div>
+	// 		</div>
+	// 		</div>
+	// 	</div>
+
+	// );
+	return(
+		<div className={classes.Form}> 
+			<form className={classes.FormCard}>
+				<div className={classes.actions}>
+				<button onClick={()=> navigate("/login")}>Sign in </button>
+				<button onClick={()=> navigate("signin")} className={classes.active}>Sign up</button>
+
+				</div>
+			<div className={classes.element}>
+				<label htmlFor="">Full Name *</label>
+				<input value={name}
+				 onChange={nameChange} onBlur={nameBlur}/>
+			</div>
+			<div className={classes.element}>
+				<label htmlFor=" ">Email address *</label>
+				<input value={email} onChange={emailChange} onBlur={emailBlur} />
+			</div>
+			<div className={classes.element}>
+				<label>Phone number *</label>
+				<PhoneInput
+                    
+					style={
+						{
+							width: "90%",
+							'@media(min-width: 788px)': {
+								width: "20rem"
+							  }
+						}
+					}
+						onChange={()=>{}}
+                    defaultCountry="EG"
+                    id="phoneNumber"
+                  />
+			</div>
+				<div className={classes.element} >
+	 						<span className="text-neutral-800 dark:text-neutral-200">
+ 							{t("password")}
+	 						</span>
+	 						<OtpInput
+							value={password}
+								inputStyle={classes.otp}
+	 							hasErrored={password?.length <= 6}
 								onChange={(e: any) => {
-									const event: any = {
-										target: {
+	 								const event: any = {
+	 									target: {
 											value: e,
 										},
 									};
-									passwordChange(event);
-								}}
-								placeholder="------"
+	 								passwordChange(event);
+	 							}}
+								 isInputSecure={true}
 								isInputNum={true}
 								numInputs={6}
-								separator={<div style={{ marginInline: "0.5rem" }} />}
-								containerStyle={{ direction: "ltr" }}
-							/>
-							{passwordHasError && (
-								<p className="mt-1 text-red-900">{t("inValidPassword")}</p>
-							)}
-						</label>
-						<label className="block">
-							<span className="text-neutral-800 dark:text-neutral-200">
-								{t("confirmPassword")}
-							</span>
-							<OtpInput
-								value={confirmPassword}
-								inputStyle={{
-									height: "3.5rem",
-									width: "3.5rem",
-									border: "1px solid rgb(67,56,202)",
-									borderRadius: 4,
-									color: "text-neutral-800 dark:text-neutral-200",
-									fontWight: "bolder",
-									fontSize: "1.5rem",
-									marginTop: "0.5rem",
-								}}
-								hasErrored={password?.length <= 6}
+	 							separator={<div style={{ marginInline: "0.5rem" }} />}
+	 							containerStyle={{ direction: "ltr" }}
+	 						/>
+						</div>	
+				<div className={classes.element} >
+	 						<span className="text-neutral-800 dark:text-neutral-200">
+ 							Confirm Password
+	 						</span>
+	 						<OtpInput
+							value={confirmPassword}
+							inputStyle={classes.otp}
+	 							hasErrored={confirmPassword?.length <= 6}
 								onChange={(e: any) => {
-									const event: any = {
-										target: {
+	 								const event: any = {
+	 									target: {
 											value: e,
 										},
 									};
 									confirmPasswordChange(event);
-								}}
-								placeholder="------"
+	 							}}
+	 							
 								isInputNum={true}
 								numInputs={6}
-								separator={<div style={{ marginInline: "0.5rem" }} />}
-								containerStyle={{ direction: "ltr" }}
-							/>
-							{!!password && confirmPasswordHasError && (
-								<p className="mt-1 text-red-900">{t("notMatchedPassword")}</p>
-							)}
-						</label>
-						{/* <ButtonPrimary type="submit">{t("continue")}</ButtonPrimary> */}
-						<ButtonPrimary type="submit">{t("continue")}</ButtonPrimary>
-					</form>
-					{/* OR */}
-					<div className="relative text-center">
-						<span className="relative z-10 inline-block bg-white px-4 text-sm font-medium dark:bg-neutral-900 dark:text-neutral-400">
-							{t("or")}
-						</span>
-						<div className="absolute left-0 top-1/2 w-full -translate-y-1/2 transform border border-neutral-100 dark:border-neutral-800"></div>
-					</div>
+								isInputSecure={true}
+	 							separator={<div style={{ marginInline: "0.5rem" }} />}
+	 							containerStyle={{ direction: "ltr" }}
+	 						/>
+						</div>	
 
-					{/* ==== */}
-
-					<span className="block text-center text-neutral-700 dark:text-neutral-300">
-						{t("alreadyHaveAnAccount")} {` `}
-						{!token && (
-							<Link to="/login">
-								<span className="text-primary-6000">{t("login")}</span>
-							</Link>
-						)}
-					</span>
-				</div>
-			</div>
+						<button className={classes.confirm} onClick={submitHandler}>Create account</button>
+			</form>
+			
 		</div>
-	);
+	)
 };
 
 export default PageSignUp;

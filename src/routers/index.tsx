@@ -45,7 +45,11 @@ import { ListFlightOneRound } from "containers/ListingFlightsPage/ListFlightOneR
 import { FlightsOffers } from "containers/ListingFlightsPage/FlightsOffers";
 import ListFlightTwoRound from "containers/ListingFlightsPage/ListFlightTwoRound";
 import { FlightOffersTwo } from "containers/ListingFlightsPage/FlightOffersTwo";
-import CheckOutOneRound from "containers/CheckOutPage/CheckOutOneRound";
+import Booking from "containers/Booking/Booking";
+import Profile from "containers/Profile/Profile";
+import AdressDetail from "containers/AdressDetail/AdressDetail";
+import Address from "containers/Address/Address";
+import ChangePassord from "containers/ChangePassword/ChangePassord";
 
 export const pages: any[] = [
 	{ path: "/", exact: true, component: PageHome },
@@ -66,6 +70,18 @@ export const pages: any[] = [
 	//   component: ListingExperiencesDetailPage,
 	// },
 	//
+
+	{ path: "/", exact: true, component: PageHome },
+	{ path: "/#", exact: true, component: PageHome },
+	{ path: "/profile",  component: Profile },
+	
+	{ path: "/address",  component: AdressDetail },
+	{ path: "/addaddress",  component: Address },
+	{ path: "/changepassword",  component: ChangePassord },
+	{ path: "/booking",  component: Booking },
+
+
+
 	{ path: "/listing-car", component: ListingCarPage },
 	{ path: "/listing-car-map", component: ListingCarMapPage },
 	//

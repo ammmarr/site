@@ -62,6 +62,7 @@ const FlightSearchForm: FC<FlightSearchFormProps> = ({
 	const [flightClassCode, setFlightClassCode] = useState("");
 	const [flightClass, setFlightClass] = useState<any>([]);
 
+	window.localStorage.setItem("flightClassState" , flightClassState)
 	console.log("flightClassState" , flightClassState)
 	// USER EFFECT
 	useEffect(() => {

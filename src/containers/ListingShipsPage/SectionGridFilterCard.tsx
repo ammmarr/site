@@ -50,6 +50,7 @@ const SectionGridFilterCard: FC<SectionGridFilterCardProps> = ({
 					trips.map((item: any, index: number) => {
 						return (
 							<MarinTimeCard
+						        className="cursor-pointer"
 								travelFrom={decodeURIComponent(cityFrom ?? "")}
 								travel={travelFrom}
 								key={index}

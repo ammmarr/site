@@ -11,7 +11,12 @@ const ScrollableList: React.FC<ScrollableListProps> = ({ items }) => {
   const handleScrollLeft = () => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollLeft -= scrollContainerRef.current.offsetWidth;
+      scrollContainerRef.current.scrollTo({
+        left: scrollContainerRef.current.scrollLeft,
+        behavior: 'smooth',
+      });
     }
+    
   };
 
   const handleScrollRight = () => {
@@ -19,10 +24,10 @@ const ScrollableList: React.FC<ScrollableListProps> = ({ items }) => {
       const scrollWidth = scrollContainerRef.current.scrollWidth;
       const containerWidth = scrollContainerRef.current.offsetWidth;
       const maxScrollLeft = scrollWidth - containerWidth;
-
+      
       let newScrollLeft = scrollContainerRef.current.scrollLeft + containerWidth;
-
-      if (newScrollLeft >= maxScrollLeft) {
+      console.log(maxScrollLeft,newScrollLeft)
+      if (newScrollLeft <= maxScrollLeft) {
         newScrollLeft = 0; // Scroll back to the beginning
       }
 
@@ -50,7 +55,7 @@ const ScrollableList: React.FC<ScrollableListProps> = ({ items }) => {
   }, []);
 
   return (
-    <div className="flex flex-row items-end relative h-[150px]">
+    <div className="flex flex-row items-center relative h-[150px] w-full">
       <button
         className="rounded-full absolute left-1 bottom-[-50px]"
         disabled={scrollPosition === 0}
@@ -69,11 +74,11 @@ const ScrollableList: React.FC<ScrollableListProps> = ({ items }) => {
       </button>
       <div
         ref={scrollContainerRef}
-        className="flex absolute left-2 align-middle right-2 bottom-0 flex-nowrap overflow-x-scroll space-x-4"
+        className="flex absolute w-full  align-middle right-2 bottom-0 flex-nowrap overflow-x-scroll space-x-4 no-scrollbar"
         onScroll={handleScroll}
       >
         {items.map((item, index) => (
-          <div key={index} className="flex-shrink-0 rounded-lg flex items-end justify-center">
+          <div key={index} className="flex-shrink-0 rounded-lg flex items-end justify-center w-[20vw]">
             <img className="mr-[42px] w-fit object-cover rounded-lg" src={item} alt="hero" />
           </div>
         ))}

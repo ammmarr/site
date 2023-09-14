@@ -9,7 +9,7 @@ const Profile = () => {
     <div className={classes.layout } >
       <div className="container">
         <BackButtom />
-        <div className="two mt-5">
+        <div className={`${classes.container_cards}two mt-5`} >
             <ProfileCard />
             <EditProfile />
         </div>

@@ -58,13 +58,14 @@ const ListingBusPage: FC<ListingFlightsPageProps> = ({ className = "" }) => {
 	const [filterFunction, setFilterFunction] = useState<Function>((item: any) => true)
 	const [originalTrips, setOriginalTrips] = useState<any>([])
 	const [displayableData, setDisplayableData] = useState<any>([])
+	const [first, setFirst] = useState("")
 	let counter: any = []
 	let allTrips_filtered: any = [];
 	const [filterToStation, setFilerToStation] = useState<string>("");
 	// after filtration
 	const [FinalTrips, SetFinalTrips] = useState<any>([]);
-	window.localStorage.setItem("isFirsftTripFinshed" , "1")
-
+	window.localStorage.setItem("isFirsftTripFinshed" , first)
+    
 	useEffect(() => {
 		if (!!search) {
 			const data = search.slice(1).split("/");
@@ -73,6 +74,7 @@ const ListingBusPage: FC<ListingFlightsPageProps> = ({ className = "" }) => {
 			setTravelFrom(data?.[2]);
 			setCity(data?.[3]);
 			setCityFrom(data?.[4]);
+			setFirst(data?.[5]);
 			setTrips([]);
 			setPage(1);
 		}
@@ -342,16 +344,16 @@ const ListingBusPage: FC<ListingFlightsPageProps> = ({ className = "" }) => {
 			data-nc-id="ListingFlightsPage"
 		>
 			{/* bus back ground for search page  */}
-			<div className="m-0 p-0  w-[100vw] h-[65vh] block" style={{
+			<div className="m-0 p-0  w-[100vw] h-[30vh] block" style={{
 				// backgroundImage: `url(${homeBg2})`,
 				objectFit: "contain",
-			}}> <img src={homeBg2} className="object-cover w-[100%]  m-0 p-0  h-[65vh] "></img>
+			}}> <img src={homeBg2} className="object-cover w-[100%]  mb-0 mt-0 p-0  h-[30vh] "></img>
 			</div>
 
 			<Helmet>
 				<title>Telefreik For Booking Travels</title>
 			</Helmet>
-			<BgGlassmorphism />
+			
 
 			<div className="container flex flex-col items-center   mt-10">
 				{/* SECTION HERO */}

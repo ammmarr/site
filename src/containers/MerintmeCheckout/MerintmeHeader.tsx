@@ -16,6 +16,12 @@ export const MerintmeHeader:FC<MerintmeHeaderProp> = ({
     modle
 }) => {
 
+  const M_from:any = window.localStorage.getItem("maritime_from")
+  const maritime_from = JSON.parse(M_from)
+
+  const M_to:any = window.localStorage.getItem("maritime_to")
+  const maritime_to = JSON.parse(M_to)
+
     const { t } = useTranslation();
     const handleBackClick = () => {
       window.history.back();
@@ -65,25 +71,25 @@ export const MerintmeHeader:FC<MerintmeHeaderProp> = ({
             className={`flex items-center justify-center ${Styled.fromtospace}`}
           >
             <span className={`text-[32px] font-[500px] ${Styled.from_name}`}>
-              {from_address}
+              {maritime_from?.name}
             </span>
             <svg
-              version="1.1"
-              id="Layer_1"
-              xmlns="http://www.w3.org/2000/svg"
-              x="0px"
-              y="0px"
-              width="62.028px"
-              height="10px"
-              viewBox="0 0 62.028 10"
-              enable-background="new 0 0 62.028 10"
-            >
-              <circle fill="#FFFFFF" cx="3.581" cy="5.039" r="3.562" />
-              <circle fill="#FFFFFF" cx="58.581" cy="5.039" r="3.562" />
-              <rect x="3.653" y="4" fill="#FFFFFF" width="55" height="2" />
-            </svg>
+                version="1.1"
+                id="Layer_1"
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="100.028px"
+                height="10px"
+                viewBox="0 0 62.028 10"
+                enable-background="new 0 0 62.028 10"
+              >
+                <circle fill="#FFFFFF" cx="3.581" cy="5.039" r="3.562" />
+                <circle fill="#FFFFFF" cx="58.581" cy="5.039" r="3.562" />
+                <rect x="3.653" y="4" fill="#FFFFFF" width="55" height="2" />
+              </svg>
             <span className={`text-[32px] font-[500px] ${Styled.to_name}`}>
-              {to_address}
+              {maritime_to?.name}
             </span>
           </div>
 

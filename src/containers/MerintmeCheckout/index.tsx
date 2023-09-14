@@ -27,6 +27,7 @@ import { Bus } from "shared/bus";
 import { ClassicBus } from "shared/classicBus";
 import { ComfortBus } from "shared/ComfortBus";
 import {MerintmeHeader} from './MerintmeHeader'
+import axios from "axios";
 export interface CheckOutPageProps {
   className?: string;
 
@@ -144,8 +145,9 @@ const MaritimeCheckout: FC<CheckOutPageProps> = ({ className = "" }) => {
         id
       )
         .then((res) => {
-          if (res?.data?.data?.gateway_order_id) {
-            setOrderId(res?.data?.data?.gateway_order_id);
+          console.log(res?.data?.data)
+          if (res?.data?.data) {
+            setOrderId(res?.data?.data);
             setPrice(res?.data?.data?.total);
             toast.success(res?.data?.message);
           }
@@ -172,33 +174,47 @@ const MaritimeCheckout: FC<CheckOutPageProps> = ({ className = "" }) => {
   useEffect(() => {
     
   })
-  const createPayments = async () => {
-    if (!!orderId) {
-      await createPayment(orderId)
-        .then((res) => {
-          if (res?.data?.data?.url) {
-            setIframe(res?.data?.data?.url);
-            setUrl(res?.data?.data?.url)
-            setIsOpen(true);
 
-            
-          }
-          
-          setLoading(false);
-        })
-        .catch((err) => {
-          setLoading(false);
-          if (Object.keys(err?.response?.data?.errors)?.length) {
-            setLoading(false);
-            showApiErrorMessages(err.response.data.errors);
-          } else {
-            setLoading(false);
-            toast.error(err?.response?.data?.message);
-          }
-        });
-    } else {
-      toast.error(t("notFound"));
+
+
+  const createPayments = async () => {
+
+    createPayment(orderId)
+    .then((res) => {
+      if (res?.data?.payment_url) {
+        setIframe(res?.data?.payment_url);
+      }
+      
       setLoading(false);
+    })
+    .catch((err) => {
+      setLoading(false);
+      if (Object.keys(err?.response?.data?.errors)?.length) {
+        setLoading(false);
+        showApiErrorMessages(err.response.data.errors);
+      } else {
+        setLoading(false);
+        toast.error(err?.response?.data?.message);
+      }
+    });
+
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        accept: "application/json, text/plain, /",
+        Authorization: `Bearer ${token}`
+      }
+    };
+
+    if (iframe) {
+      try {
+        const {data} = await axios.post(iframe, config);
+        const  url  = data?.url;
+        console.log(url)
+        window.location.href = `${url}`
+      } catch (error:any) {
+        console.log(error.message);
+      }
     }
   };
 
@@ -465,11 +481,7 @@ const MaritimeCheckout: FC<CheckOutPageProps> = ({ className = "" }) => {
       <main className="container mt-[6vh] flex flex-col-reverse items-center  max-sm:mt-[9vh]">
         <div className="w-full   ">{renderMain()}</div>
       </main>
-      <PaymentDetailsModal
-        iframe={iframe}
-        isOpenProp={isOpen}
-        onCloseModal={() => setIsOpen(false)}
-      />
+   
       {/* <SeatsDetailsModal
         isOpenProp={true}
         onCloseModal={() => setIsOpen(false)}

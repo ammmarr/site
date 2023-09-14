@@ -146,7 +146,7 @@ const SectionGridFilterCard: FC<SectionGridFilterCardProps> = ({
 			if (!keySet.includes(key)) {
 				uniqueData.push(item);
 				keySet.push(key);
-				console.log("key set",keySet)
+				
 			}
 		}
 
@@ -159,7 +159,7 @@ const SectionGridFilterCard: FC<SectionGridFilterCardProps> = ({
 			className={`nc-SectionGridFilterCard ${className} `}
 			data-nc-id="SectionGridFilterCard"
 		>
-			<div className="grid grid-cols-1 gap-6 rounded-3xl   lg:dark:bg-black/20">
+			<div className="grid grid-cols-1 gap-6 rounded-3xl   lg:dark:bg-black/20 rtl:mr-5">
 				{/* The results count and "All tickets" label */}
 			
 				{/* The flight cards themselves */}
